@@ -1,3 +1,3 @@
 library nebx_utilities;
 
-export 'services/services_export.dart';
+export '/src/services/services_export.dart';
