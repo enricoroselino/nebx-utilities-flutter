@@ -2,14 +2,16 @@ import 'dart:async';
 import 'dart:ui';
 
 class Debounce {
-  final Duration delay;
+  late final Duration _delay;
   Timer? _timer;
 
-  Debounce({required this.delay});
+  Debounce({required Duration delay}) {
+    _delay = delay;
+  }
 
   void run(VoidCallback action) {
     _timer?.cancel();
-    _timer = Timer(delay, action);
+    _timer = Timer(_delay, action);
   }
 
   void dispose() {
