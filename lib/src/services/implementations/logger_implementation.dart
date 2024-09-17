@@ -1,10 +1,5 @@
 import 'package:logger/logger.dart';
-
-abstract interface class ILogger {
-  void error({required String message});
-
-  void debug({required String message});
-}
+import 'package:nebx_utilities/src/services/interfaces/illogger.dart';
 
 class LoggerImplementation implements ILogger {
   late final Logger _logger;
