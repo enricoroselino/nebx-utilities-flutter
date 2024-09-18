@@ -14,7 +14,7 @@ class PermissionManagerImplementation implements IPermissionManager {
   @override
   Future<bool> requestManageExternalStorage() async {
     final status = await Permission.manageExternalStorage.request();
-    if (status.isPermanentlyDenied) await openPermissionSettings();
+    if (!status.isGranted) await openPermissionSettings();
     return status != PermissionStatus.granted ? false : true;
   }
 
@@ -31,10 +31,14 @@ class PermissionManagerImplementation implements IPermissionManager {
       Permission.audio,
     ].request();
 
-    if (statuses.values.any((i) => i == PermissionStatus.permanentlyDenied)) {
+    final anyNotGranted =
+        statuses.values.any((i) => i != PermissionStatus.granted);
+
+    if (anyNotGranted) {
       await openPermissionSettings();
     }
-    return !statuses.values.any((i) => i != PermissionStatus.granted);
+
+    return !anyNotGranted;
   }
 
   @override
@@ -45,7 +49,7 @@ class PermissionManagerImplementation implements IPermissionManager {
     }
 
     final status = await Permission.storage.request();
-    if (status.isPermanentlyDenied) await openPermissionSettings();
+    if (!status.isGranted) await openPermissionSettings();
     return status != PermissionStatus.granted ? false : true;
   }
 
