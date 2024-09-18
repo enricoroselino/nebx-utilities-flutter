@@ -11,3 +11,6 @@
 * added IDebounce & Debounce to defer user clicks or anything else
 * added IDirectoryProvider & DirectoryProviderImplementation to provide directory with needed permission using path_provider
 * added IPermissionManager & PermissionManagerImplementation to manage permission using permission_handler
+
+## 0.2.1
+* ask aggressively to turn on permission by opening App Settings if any of asked permission is not granted.
